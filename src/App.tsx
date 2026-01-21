@@ -33,7 +33,11 @@ function App() {
 
 function MovieList({ onAddMovie }: { onAddMovie: (e: React.FormEvent) => void }) {
 
-  var movies = [];
+  var movies: string[] = [];
+    const listItems = movies.map(movies =>
+      <li>{movies}</li>
+    );
+    return <ul>{listItems}</ul>;
   return (
     
     <div className="movie-list">
