@@ -1,17 +1,35 @@
 import { useState } from 'react'
 import './App.css'
 
+interface Movie {
+  id: number;
+  title: string;
+  watched: boolean;
+  rating?: number;
+}
+
 function App() {
-  const [newList, setNewList] = useState<string[]>([]);
+  const [newList, setNewList] = useState<Movie[]>([]);
   const[show, setShow] = useState(false);
   const changeOpen = () => setShow(true);
   const changeClose = () => setShow(false);
-  const normalizeTitle = (title: string) => title.toLowerCase();
+  const normalizeTitle = (movie: Movie) => movie.title.toLowerCase();
 
   var addToList = (title: string) => {
-    if (title.trim() !== '' && !newList.some(movie => normalizeTitle(movie) === normalizeTitle(title))) {
-      setNewList(prev => [...prev, title]);
+    let id = newList.length > 0 ? newList[newList.length - 1].id + 1 : 1;
+    if (
+      title.trim() !== '' &&
+      !newList.some(movie => normalizeTitle(movie) === title.trim().toLowerCase())
+    ) {
+      setNewList(prev => [
+        ...prev,
+        { id: id, title: title.trim(), watched: false }
+      ]);
     }
+  };
+
+  var removeMovie = () => {
+    setNewList(prev => prev.slice(0, -1));
   };
 
   return (
@@ -25,9 +43,11 @@ function App() {
           <div>
             <h2>Your Movie Collection</h2>
             <button onClick={changeClose}>Close</button>
+            <button onClick={() => setNewList([])}>Clear All Movies</button>
+            <button onClick={() => removeMovie()}>Remove</button>
             <ul>
-              {newList.map((movie, index) => (
-                <li key={index}>{movie}</li>
+              {newList.map((movie) => (
+                <li key={movie.id}>{movie.title}</li>
               ))}
               {newList.length === 0 && <li>No movies added yet.</li>}
 
