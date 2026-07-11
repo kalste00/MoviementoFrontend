@@ -17,7 +17,6 @@ function App() {
     toggleWatched,
     updateRating,
     clearMovies,
-    addReview
   } = useMovies();
 
   return (
@@ -47,7 +46,6 @@ function App() {
               toggleWatched={toggleWatched}
               updateRating={updateRating}
               clearMovies={clearMovies}
-              addReview={addReview}
             />
           }
         />

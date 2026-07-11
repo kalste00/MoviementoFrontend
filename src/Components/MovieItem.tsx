@@ -5,7 +5,7 @@ function MovieItem({
   onRemoveMovie,
   onToggleWatched,
   onUpdateRating,
-  addReview,
+  onAddReview: addReview,
 }: MovieItemProps) {
     return (
     <li style={{ marginBottom: '16px' }}>
@@ -29,9 +29,13 @@ function MovieItem({
             type="text"
             placeholder="Add a review..."
             value={movie.review}
-            onChange={e => addReview(movie.id, e.target.value)}
+            onChange={e => onAddReview(movie.id, e.target.value)}
           />
         </label>
+
+        <button onClick={() => onAddReview(movie.id, '')} style={{ marginLeft: '8px' }}>
+          Save
+        </button>
       </div>
 
       <div style={{ marginTop: '6px' }}>
