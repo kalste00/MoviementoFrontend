@@ -5,7 +5,7 @@ function MovieItem({
   onRemoveMovie,
   onToggleWatched,
   onUpdateRating,
-  onAddReview: addReview,
+  onAddReview
 }: MovieItemProps) {
     return (
     <li style={{ marginBottom: '16px' }}>
