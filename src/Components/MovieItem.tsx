@@ -1,49 +1,45 @@
 import type {MovieItemProps} from '../Types/MovieItemProps';
+import { useState } from 'react';
 
-function MovieItem({
-  movie,
-  onRemoveMovie,
-  onToggleWatched,
-  onUpdateRating,
-  onAddReview
-}: MovieItemProps) {
+function MovieItem(props: MovieItemProps) {
+    const reviewInput = useState(props.movie.review || '');
     return (
     <li style={{ marginBottom: '16px' }}>
-      <strong>{movie.title}</strong>
+      <strong>{props.movie.title}</strong>
 
       <div style={{ marginTop: '6px' }}>
-        <label>
           <input
             type="checkbox"
-            checked={movie.watched}
-            onChange={() => onToggleWatched(movie.id)}
+            checked={props.movie.watched}
+            onSubmit={() => props.onToggleWatched(props.movie.id)}
           />{' '}
           Watched
-        </label>
-      </div>
 
-      <div style={{ marginTop: '6px' }}>
-        <label>
+        <form
+          className="review-form"
+          onChange={e => {
+            e.preventDefault();
+            props.addReview(props.movie.id, reviewInput);
+            props.onAddReview(props.movie.id, '');
+          }}
+          >
           Review:{' '}
           <input
             type="text"
             placeholder="Add a review..."
-            value={movie.review}
-            onChange={e => onAddReview(movie.id, e.target.value)}
+            value={props.movie.review}
+            onChange={e => props.onAddReview(props.movie.id, e.target.value)}
           />
-        </label>
-
-        <button onClick={() => onAddReview(movie.id, '')} style={{ marginLeft: '8px' }}>
-          Save
-        </button>
+          <button type="submit">Save Review</button>
+        </form>
       </div>
 
       <div style={{ marginTop: '6px' }}>
         <label>
           Rating:{' '}
           <select
-            value={movie.rating ?? ''}
-            onChange={e => onUpdateRating(movie.id, Number(e.target.value))}
+            value={props.movie.rating ?? ''}
+            onChange={e => props.onUpdateRating(props.movie.id, Number(e.target.value))}
           >
             <option value="">Choose rating</option>
             <option value="1">1</option>
@@ -61,7 +57,7 @@ function MovieItem({
       </div>
 
       <button
-        onClick={() => onRemoveMovie(movie.id)}
+        onClick={() => props.onRemoveMovie(props.movie.id)}
         style={{ marginTop: '8px' }}
       >
         Remove
