@@ -29,11 +29,11 @@ function MovieItem({
             type="text"
             placeholder="Add a review..."
             value={movie.review}
-            onChange={e => onAddReview(movie.id, e.target.value)}
+            onChange={e => addReview(movie.id, e.target.value)}
           />
         </label>
 
-        <button onClick={() => onAddReview(movie.id, '')} style={{ marginLeft: '8px' }}>
+        <button onClick={() => addReview(movie.id, '')} style={{ marginLeft: '8px' }}>
           Save
         </button>
       </div>

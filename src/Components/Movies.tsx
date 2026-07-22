@@ -45,7 +45,7 @@ function MovieList(props: MovieListProps) {
                     onRemoveMovie={props.removeMovie}
                     onToggleWatched={props.toggleWatched}
                     onUpdateRating={props.updateRating}
-                    onAddReview={props.addReview}
+                    onAddReview={props.onAddReview}
                   />
                 ))
               ) : (

@@ -12,4 +12,5 @@ export type MovieListProps = {
   removeMovie: (id: number) => void;
   toggleWatched: (id: number) => void;
   updateRating: (id: number, rating: number) => void;
+  onAddReview: (id: number, value: string) => void;
 };
