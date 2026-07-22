@@ -5,7 +5,6 @@ export const useMovies = () => {
     const [inputValue, setInputValue] = useState('');
     const [newList, setNewList] = useState<Movie[]>([]);
     const [show, setShow] = useState(false);
-    const [inputReview, setInputReview] = useState('');
     const changeOpen = () => setShow(true);
     const changeClose = () => setShow(false);
     const normalizeTitle = (movie: Movie) => movie.title.toLowerCase();
