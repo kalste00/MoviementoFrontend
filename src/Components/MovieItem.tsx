@@ -2,7 +2,7 @@ import type {MovieItemProps} from '../Types/MovieItemProps';
 import { useState } from 'react';
 
 function MovieItem(props: MovieItemProps) {
-    const reviewInput = useState(props.movie.review || '');
+    const [reviewInput, setReviewInput] = useState(props.movie.review ?? '');
     return (
     <li style={{ marginBottom: '16px' }}>
       <strong>{props.movie.title}</strong>
@@ -17,21 +17,22 @@ function MovieItem(props: MovieItemProps) {
 
         <form
           className="review-form"
-          onChange={e => {
+          onSubmit={e => {
             e.preventDefault();
             props.addReview(props.movie.id, reviewInput);
-            props.onAddReview(props.movie.id, '');
+            setReviewInput('')
           }}
           >
-          Review:{' '}
+          Add a Review:{' '}
           <input
             type="text"
             placeholder="Add a review..."
-            value={props.movie.review}
-            onChange={e => props.onAddReview(props.movie.id, e.target.value)}
+            value = {reviewInput}
+            onChange={e => setReviewInput(e.target.value)}
           />
           <button type="submit">Save Review</button>
         </form>
+        Review: {props.movie.review}
       </div>
 
       <div style={{ marginTop: '6px' }}>
