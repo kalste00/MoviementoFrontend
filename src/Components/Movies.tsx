@@ -3,8 +3,10 @@ import type { MovieListProps } from '../Types/MovieListProps';
 
 function MovieList(props: MovieListProps) {
   return (
+
     <div className="movie-list">
       <h2>Your Movie Collection</h2>
+
 
       <form
         className="add-movie-form"
@@ -36,12 +38,21 @@ function MovieList(props: MovieListProps) {
               Clear All Movies
             </button>
 
-            <ul style={{ listStyle: 'none', padding: 0, marginTop: '20px' }}>
+            <table style={{ listStyle: 'none', padding: 0, marginTop: '20px' }}>
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Watched</th>
+                  <th>Review</th>
+                  <th>Rating</th>
+                </tr>
+              </thead>
+
               {props.newList.length > 0 ? (
                 props.newList.map(movie => (
                   <MovieItem
                     key={movie.id}
-                    movie={movie}
+                    movie={movie}    
                     onRemoveMovie={props.removeMovie}
                     onToggleWatched={props.toggleWatched}
                     onUpdateRating={props.updateRating}
@@ -52,7 +63,7 @@ function MovieList(props: MovieListProps) {
               ) : (
                 <li>No movies added yet.</li>
               )}
-            </ul>
+            </table>
           </div>
         )}
       </div>

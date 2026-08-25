@@ -17,7 +17,7 @@ function App() {
     toggleWatched,
     updateRating,
     clearMovies,
-    addReview
+    addReview,
   } = useMovies();
 
   return (
