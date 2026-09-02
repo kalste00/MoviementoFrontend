@@ -9,9 +9,6 @@ function App() {
     newList,
     inputValue,
     setInputValue,
-    show,
-    changeOpen,
-    changeClose,
     addToList,
     removeMovie,
     toggleWatched,
@@ -36,12 +33,9 @@ function App() {
           path="/movies"
           element={
             <MoviePage
-              newList={newList}
               inputValue={inputValue}
               setInputValue={setInputValue}
-              show={show}
-              changeOpen={changeOpen}
-              changeClose={changeClose}
+              newList={newList}
               addToList={addToList}
               removeMovie={removeMovie}
               toggleWatched={toggleWatched}

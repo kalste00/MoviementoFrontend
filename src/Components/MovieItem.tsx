@@ -6,9 +6,9 @@ function MovieItem(props: MovieItemProps) {
   const [isBlank, setIsBlank] = useState(false);
 
   return (
-      <tbody>
-        <tr>
-          <td>{props.movie.title}</td>
+    <tbody>
+      <tr>
+        <td>{props.movie.title}</td>
 
         <td>
           <input
@@ -61,38 +61,40 @@ function MovieItem(props: MovieItemProps) {
           {props.movie.review || 'No review added yet.'}
         </td>
 
-      <td>
-        <label>
-          Rating:{' '}
-          <select
-            value={props.movie.rating ?? ''}
-            onChange={e =>
-              props.onUpdateRating(props.movie.id, Number(e.target.value))
-            }
-          >
-            <option value="">Choose rating</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
-        </label>
-      </td>
-    </tr>
+        <td>
+          <label>
+            Rating:{' '}
+            <select
+              value={props.movie.rating ?? ''}
+              onChange={e =>
+                props.onUpdateRating(props.movie.id, Number(e.target.value))
+              }
+            >
+              <option value="">Choose rating</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </label>
 
+        </td>
+
+      </tr>
       <button
         onClick={() => props.onRemoveMovie(props.movie.id)}
         style={{ marginTop: '8px' }}
       >
         Remove
       </button>
-      
+
+
     </tbody>
   );
 }

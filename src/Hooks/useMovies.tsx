@@ -4,9 +4,6 @@ import type { Movie } from '../Types/Movie';
 export const useMovies = () => {
     const [inputValue, setInputValue] = useState('');
     const [newList, setNewList] = useState<Movie[]>([]);
-    const [show, setShow] = useState(false);
-    const changeOpen = () => setShow(true);
-    const changeClose = () => setShow(false);
     const normalizeTitle = (movie: Movie) => movie.title.toLowerCase();
 
     const addToList = (title: string) => {
@@ -64,10 +61,6 @@ export const useMovies = () => {
         setInputValue,
         newList,
         setNewList,
-        show,
-        setShow,
-        changeOpen,
-        changeClose,
         addToList,
         removeMovie,
         toggleWatched,
