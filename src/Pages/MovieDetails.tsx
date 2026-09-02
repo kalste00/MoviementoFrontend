@@ -1,6 +1,8 @@
 
 
-export function MovieDetails(id: number) {
+export function movieDetails() {
+    const { id } = useParams<{ id: string }>();
+
     return (
         <div>
             <h1>Movie Details Page</h1>

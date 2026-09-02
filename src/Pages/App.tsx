@@ -3,6 +3,7 @@ import FirstWelcome from './FrontPage';
 import MoviePage from './MoviesPage';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { useMovies } from '../Hooks/useMovies';
+import movieDetails from './MovieDetails';
 
 function App() {
   const {

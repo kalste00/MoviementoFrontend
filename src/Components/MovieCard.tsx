@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import type { Movie } from '../Types/Movie';
 
 interface MovieCardProps {
@@ -5,12 +6,16 @@ interface MovieCardProps {
 }
 
 function MovieCard(props: MovieCardProps) {
+  const navigate = useNavigate();
+
   return (
-    <div className="movie-card" >
+    <div
+      className="movie-card"
+      onClick={() => navigate(`/movies/${props.movie.id}`)}
+    >
       <img
         src={props.movie.posterUrl}
         alt={props.movie.title}
-        style={{ width: '100px', height: '150px' }}
       />
       <h3>{props.movie.title}</h3>
     </div>
