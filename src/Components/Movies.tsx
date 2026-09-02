@@ -1,4 +1,3 @@
-import MovieItem from './MovieItem';
 import type { MovieListProps } from '../Types/MovieListProps';
 
 function MovieList(props: MovieListProps) {

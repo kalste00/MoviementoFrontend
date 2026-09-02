@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { Movie } from '../Types/Movie';
+import movie from '../Images/movie.jpeg';
 
 export const useMovies = () => {
     const [inputValue, setInputValue] = useState('');
@@ -19,6 +20,7 @@ export const useMovies = () => {
                 {
                     id: id,
                     title: trimmedTitle,
+                    posterUrl: movie,
                     watched: false,
                     rating: undefined,
                     review: '',

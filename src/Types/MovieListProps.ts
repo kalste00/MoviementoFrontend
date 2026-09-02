@@ -2,7 +2,6 @@ import type { Movie } from './Movie';
 
 export type MovieListProps = {
   inputValue: string;
-  image?: string;
   setInputValue: (value: string) => void;
   newList: Movie[];
   clearMovies: () => void;
