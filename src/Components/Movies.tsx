@@ -4,7 +4,6 @@ function MovieList(props: MovieListProps) {
   return (
 
     <div className="movie-list">
-      <h2>Your Movie Collection</h2>
       <form
         className="add-movie-form"
         onSubmit={e => {

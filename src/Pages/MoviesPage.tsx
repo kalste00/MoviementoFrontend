@@ -6,8 +6,6 @@ function MoviePage(props: MovieListProps) {
   return (
     <div>
       <h1>Movies Page</h1>
-      <p>Here you can manage your movie collection.</p>
-
       <MovieList {...props} />
       <div className="movie-grid">
         {props.newList.length > 0 ? (

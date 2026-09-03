@@ -3,7 +3,7 @@ import FirstWelcome from './FrontPage';
 import MoviePage from './MoviesPage';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { useMovies } from '../Hooks/useMovies';
-import movieDetails from './MovieDetails';
+import {MovieDetails} from './MovieDetails';
 
 function App() {
   const {
@@ -43,10 +43,20 @@ function App() {
               updateRating={updateRating}
               clearMovies={clearMovies}
               addReview={addReview}
-              onAddReview={addReview}
             />
           }
         />
+        <Route path="/movies/:id" element={<MovieDetails 
+              inputValue={inputValue}
+              setInputValue={setInputValue}
+              newList={newList}
+              addToList={addToList}
+              removeMovie={removeMovie}
+              toggleWatched={toggleWatched}
+              updateRating={updateRating}
+              clearMovies={clearMovies}
+              addReview={addReview}
+          />} />
       </Routes>
     </BrowserRouter>
   );
