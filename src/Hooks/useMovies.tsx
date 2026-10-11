@@ -24,6 +24,12 @@ export const useMovies = () => {
                     watched: false,
                     rating: undefined,
                     review: '',
+                    description: '',
+                    genre: '',
+                    director: '',
+                    actors: '',
+                    year: '',
+                    imdbId: '',
                 },
             ]);
         }
