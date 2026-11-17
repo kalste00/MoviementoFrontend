@@ -3,7 +3,7 @@ import type { Movie } from './Movie';
 export type MovieListProps = {
   inputValue: string;
   setInputValue: (value: string) => void;
-  newList: Movie[];
+  movies: Movie[];
   clearMovies: () => void;
   addToList: (title: string) => void;
   removeMovie: (id: number) => void;

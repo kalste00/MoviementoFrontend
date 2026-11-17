@@ -8,8 +8,8 @@ function MoviePage(props: MovieListProps) {
       <h1>Movies Page</h1>
       <MovieList {...props} />
       <div className="movie-grid">
-        {props.newList.length > 0 ? (
-          props.newList.map(movie => (
+        {props.movies.length > 0 ? (
+          props.movies.map(movie => (
             <MovieCard
               key={movie.id}
               movie={movie}

@@ -1,74 +1,103 @@
-import { useState } from 'react';
+
+import { useState, useEffect } from 'react';
 import type { Movie } from '../Types/Movie';
-import movie from '../Images/movie.jpeg';
+import movieImage from '../Images/movie.jpeg';
+import { getMovies } from '../API/movieApi';
 
 export const useMovies = () => {
     const [inputValue, setInputValue] = useState('');
-    const [newList, setNewList] = useState<Movie[]>([]);
+    const [movies, setMovies] = useState<Movie[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
     const normalizeTitle = (movie: Movie) => movie.title.toLowerCase();
 
     const addToList = (title: string) => {
         const trimmedTitle = title.trim();
-        const id = newList.length > 0 ? newList[newList.length - 1].id + 1 : 1;
+
+        const id = movies.length > 0
+            ? movies[movies.length - 1].id + 1
+            : 1;
 
         if (
             trimmedTitle !== '' &&
-            !newList.some(movie => normalizeTitle(movie) === trimmedTitle.toLowerCase())
+            !movies.some(movie =>
+                normalizeTitle(movie) === trimmedTitle.toLowerCase()
+            )
         ) {
-            setNewList(prev => [
-                ...prev,
-                {
-                    id: id,
-                    title: trimmedTitle,
-                    posterUrl: movie,
-                    watched: false,
-                    rating: undefined,
-                    review: '',
-                    description: '',
-                    genre: '',
-                    director: '',
-                    actors: '',
-                    year: '',
-                    imdbId: '',
-                },
-            ]);
+            const newMovie: Movie = {
+                id: id,
+                title: trimmedTitle,
+                imdbId: '',
+                year: '',
+                posterUrl: movieImage,
+                description: '',
+                genre: '',
+                director: '',
+                actors: '',
+                watched: false,
+                rating: undefined,
+                review: ''
+            };
+
+            setMovies(prev => [...prev, newMovie]);
         }
     };
 
     const addReview = (id: number, value: string) => {
-        setNewList(prev =>
+        setMovies(prev =>
             prev.map(movie =>
                 movie.id === id ? { ...movie, review: value } : movie
             )
         );
     };
-    
+
     const removeMovie = (id: number) => {
-        setNewList(prev => prev.filter(movie => movie.id !== id));
+        setMovies(prev => prev.filter(movie => movie.id !== id));
     };
 
     const toggleWatched = (id: number) => {
-        setNewList(prev =>
+        setMovies(prev =>
             prev.map(movie =>
-                movie.id === id ? { ...movie, watched: !movie.watched } : movie
+                movie.id === id
+                    ? { ...movie, watched: !movie.watched }
+                    : movie
             )
         );
     };
 
     const updateRating = (id: number, rating: number) => {
-        setNewList(prev =>
+        setMovies(prev =>
             prev.map(movie =>
                 movie.id === id ? { ...movie, rating: rating } : movie
             )
         );
     };
-    const clearMovies = () => setNewList([]);
+
+    const clearMovies = () => setMovies([]);
+
+    useEffect(() => {
+        async function loadMovies() {
+            try {
+                const data = await getMovies();
+                setMovies(data);
+            } catch (error) {
+                setError('Could not load movies');
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        loadMovies();
+    }, []);
 
     return {
+        movies,
+        setMovies,
+        loading,
+        error,
         inputValue,
         setInputValue,
-        newList,
-        setNewList,
         addToList,
         removeMovie,
         toggleWatched,
@@ -76,4 +105,4 @@ export const useMovies = () => {
         addReview,
         clearMovies
     };
-}
+};

@@ -7,7 +7,7 @@ import {MovieDetails} from './MovieDetails';
 
 function App() {
   const {
-    newList,
+    movies,
     inputValue,
     setInputValue,
     addToList,
@@ -36,7 +36,7 @@ function App() {
             <MoviePage
               inputValue={inputValue}
               setInputValue={setInputValue}
-              newList={newList}
+              movies={movies}
               addToList={addToList}
               removeMovie={removeMovie}
               toggleWatched={toggleWatched}
@@ -49,7 +49,7 @@ function App() {
         <Route path="/movies/:id" element={<MovieDetails 
               inputValue={inputValue}
               setInputValue={setInputValue}
-              newList={newList}
+              movies={movies}
               addToList={addToList}
               removeMovie={removeMovie}
               toggleWatched={toggleWatched}
