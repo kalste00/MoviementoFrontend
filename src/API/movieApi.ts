@@ -66,4 +66,13 @@ export async function deleteMovie(id: string): Promise<void> {
 }
 
 export async function clearMovies(): Promise<void> {
-    
+
+    const response = await fetch(API_URL,{
+        method: 'DELETE',
+    });
+
+    if (!response.ok) {
+        throw new Error(`Failed to clear movies: ${response.status} ${response.statusText}`);
+    }
+}
+
