@@ -6,7 +6,7 @@ export function MovieDetails(props: MovieListProps) {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
-  const movie = props.newList.find(
+  const movie = props.movies.find(
     movie => movie.id === Number(id)
   );
 
